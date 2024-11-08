@@ -1,0 +1,53 @@
+# Deployment Information
+pods_status:
+  main_pods_running: 3 #TODO: Enter number of main pods running
+  canary_pods_running: 1 #TODO: Enter number of canary pods running
+
+# Service Information
+service_endpoints:
+  main_service_cluster_ip: 10.105.140.52 #TODO: Enter the ClusterIP of main service
+  canary_service_cluster_ip: 10.99.135.71 #TODO: Enter the ClusterIP of canary service
+
+# Ingress Information
+ingress_details:
+  address: 192.168.49.2  #TODO: Enter the Ingress controller IP address
+  host: canary-demo.local #TODO: Enter the configured host (should be canary-demo.local)
+
+# Metrics
+main_deployment_metrics:
+  http_requests_total: 8.0 #TODO: Enter the value from main deployment's /metrics endpoint
+  process_cpu_seconds_total: 0.54 #TODO: Enter the CPU seconds from main deployment
+  process_resident_memory_bytes: 3.2309248e+07 #TODO: Enter the memory usage from main deployment
+
+canary_deployment_metrics:
+  http_requests_total: 2.0 #TODO: Enter the value from canary deployment's /metrics endpoint
+  process_cpu_seconds_total: 0.24 #TODO: Enter the CPU seconds from canary deployment
+  process_resident_memory_bytes: 1.73108803528e+09 #TODO: Enter the memory usage from canary deployment
+
+# Traffic Distribution Test
+traffic_test_results:
+  total_requests_sent: 20 #TODO: Enter how many test requests you sent (should be 20)
+  main_responses_received: 16 #TODO: Enter how many responses were from main deployment
+  canary_responses_received: 4 #TODO: Enter how many responses were from canary deployment
+  actual_canary_percentage: 20.00 #TODO: Calculate the actual percentage of canary traffic
+
+# Prometheus Queries
+prometheus_metrics:
+  main_request_rate: #TODO: Enter the result of rate(http_requests_total{version="v1"}[5m])
+  canary_request_rate: #TODO: Enter the result of rate(http_requests_total{version="v2"}[5m])
+
+# Rollback Test
+rollback_test:
+  previous_revision: 3 #TODO: Enter the revision number before rollback
+  rollback_command_used: helm rollback canary-demo 2 -n canary-demo #TODO: Enter the helm rollback command you used
+  time_to_rollback_seconds: 1 #TODO: Enter how long the rollback took to complete
+
+# Error Budget Calculation (based on 99.9% SLO)
+error_budget:
+  monthly_error_budget_seconds: 2592.00 #TODO: Calculate and enter the monthly error budget in seconds
+  remaining_error_budget_percentage: 100.00 #TODO: Enter current remaining error budget percentage
+
+# Additional Observations
+observations:
+  unexpected_behaviors: #TODO: List any unexpected behaviors you observed
+  suggested_improvements: #TODO: List any improvements you would suggest
